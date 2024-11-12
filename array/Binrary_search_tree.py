@@ -135,6 +135,28 @@ class BinarySearchTree:
             self._preorder_traverse_recursive(node.left, result)
             self._preorder_traverse_recursive(node.right, result)
 
+    def height_of_tree(self):
+        return self._height_of_tree_recursive(self.root)
+
+    def _height_of_tree_recursive(self, node):
+        if node is None:
+            return 0
+        left_height = self._height_of_tree_recursive(node.left)
+        right_height = self._height_of_tree_recursive(node.right)
+        return 1 + max(left_height, right_height)
+    
+
+    def isIndentical(self, tree1, tree2):
+        if tree1 is None and tree2 is None:
+            return True
+        if tree1 is not None and tree2 is not None:
+            return (
+                tree1.key == tree2.key
+                and self.isIndentical(tree1.left, tree2.left)
+                and self.isIndentical(tree1.right, tree2.right)
+            )
+        return False
+
     def display(self):
         """Display the BST in a structured format."""
         lines = []
@@ -160,6 +182,9 @@ class BinarySearchTree:
                     )
 
 
+class TreeAlgos:
+    
+
 if __name__ == "__main__":
     bst = BinarySearchTree()
     bst.insert(10)
@@ -171,6 +196,7 @@ if __name__ == "__main__":
     bst.insert(17)
 
     bst.display()
+    print(bst.height_of_tree())
 
     print(
         "Inorder Traversal:", bst.inorder_traverse()
