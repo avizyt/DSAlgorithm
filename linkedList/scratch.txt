@@ -1,0 +1,9 @@
+1,3,4,5
+
+1--> 3 --> 4 -->5
+
+now if we wan to add 2 afte node 1
+then 1.next will be new_node
+and 
+
+1.next = self.head
