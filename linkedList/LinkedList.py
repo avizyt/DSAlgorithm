@@ -1,9 +1,3 @@
-from os import error
-
-from anyio import current_effective_deadline
-from httpx import delete
-
-
 class Node:
     def __init__(self, data):
         self.data = data
@@ -60,6 +54,16 @@ class LinkedList:
         prev.next = temp.next
         temp = None
 
+    def reverse(self):
+        prev = None
+        curr = self.head
+        while curr:
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+        self.head = prev
+
     def search(self, key):
         curr = self.head
         while curr:
@@ -97,4 +101,7 @@ if __name__ == "__main__":
         if curr.data % 2 == 0:
             ll.delete(curr)
             curr = curr.next
+    ll.print_list()
+
+    ll.reverse()
     ll.print_list()
